@@ -1,0 +1,41 @@
+<?php
+
+    require_once("config.php");
+
+    class Database extends Config {
+
+        public function fetch($id = 0) {
+            $sql = "SELECT * FROM pick";
+            if ($id != 0) {
+                $sql .= " WHERE id = :id";
+            }
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute(["id" => $id]);
+            $rows = $stmt->fetchAll();
+            return $rows;
+        }
+
+        public function insert($pick_location, $pick_note, $parent_id) {
+            $sql = "INSERT INTO pick(pick_location, pick_note, parent_id) VALUES(:pick_location, :pick_note, :parent_id)";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute(["pick_location" => $pick_location, "pick_note" => $pick_note, "parent_id" => $parent_id]);
+            return true;
+        }
+
+        public function update($pick_location, $pick_note, $parent_id, $id) {
+            $sql = "UPDATE pick SET pick_location = :pick_location, pick_note = :pick_note, parent_id = :parent_id WHERE id = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute(["pick_location" => $pick_location, 'pick_note' => $pick_note, 'parent_id' => $parent_id, 'id' => $id]); 
+            return true; 
+        }
+
+        public function delete($id) {
+            $sql = "DELETE FROM pick WHERE id = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute(["id" => $id]);
+            return true;
+        }
+
+    }
+
+?>
