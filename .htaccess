@@ -1,0 +1,27 @@
+#Turn Rewrite Engine On
+RewriteEngine On
+
+#Remove .php extension form student.php
+RewriteRule ^student/?$ student.php [NC,L]
+
+#Rewrite URL
+RewriteRule ^student/([0-9]+)/?$ student.php?id=$1 [NC,L]
+
+#Remove .php extension form parent.php
+RewriteRule ^parent/?$ parent.php [NC,L]
+
+#Rewrite URL
+RewriteRule ^parent/([0-9]+)/?$ parent.php?id=$1 [NC,L]
+
+#Remove .php extension form teacher.php
+RewriteRule ^teacher/?$ teacher.php [NC,L]
+
+#Rewrite URL
+RewriteRule ^teacher/([0-9]+)/?$ teacher.php?id=$1 [NC,L]
+
+#Remove .php extension form pick.php
+RewriteRule ^pick/?$ pick.php [NC,L]
+
+#Rewrite URL
+RewriteRule ^pick/([0-9]+)/?$ pick.php?id=$1 [NC,L]
+
